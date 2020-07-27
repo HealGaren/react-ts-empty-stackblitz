@@ -6,14 +6,22 @@ import './style.css';
 interface AppProps { }
 interface AppState {
   name: string;
+  value: string;
 }
 
 class App extends Component<AppProps, AppState> {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'React'
+      name: 'React',
+      value: 'test'
     };
+  }
+
+  handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      value: e.target.value
+    });
   }
 
   render() {
@@ -22,6 +30,10 @@ class App extends Component<AppProps, AppState> {
         <Hello name={this.state.name} />
         <p>
           Start editing to see some magic happen :)
+        </p>
+        <input value={this.state.value} onChange={this.handleValueChange}/>
+        <p>
+          text length : {this.state.value.length}
         </p>
       </div>
     );
